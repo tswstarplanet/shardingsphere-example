@@ -21,7 +21,7 @@ import org.apache.shardingsphere.example.algorithm.PreciseModuloShardingDatabase
 import org.apache.shardingsphere.example.algorithm.PreciseModuloShardingTableAlgorithm;
 import org.apache.shardingsphere.example.algorithm.RangeModuloShardingDatabaseAlgorithm;
 import org.apache.shardingsphere.example.algorithm.RangeModuloShardingTableAlgorithm;
-import org.apache.shardingsphere.example.common.DataSourceUtil;
+import org.apache.shardingsphere.example.core.api.DataSourceUtil;
 import org.apache.shardingsphere.example.config.ExampleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.KeyGeneratorConfiguration;
 import org.apache.shardingsphere.api.config.sharding.ShardingRuleConfiguration;
@@ -43,6 +43,7 @@ public final class ShardingDatabasesAndTablesConfigurationRange implements Examp
         shardingRuleConfig.getTableRuleConfigs().add(getOrderTableRuleConfiguration());
         shardingRuleConfig.getTableRuleConfigs().add(getOrderItemTableRuleConfiguration());
         shardingRuleConfig.getBindingTableGroups().add("t_order, t_order_item");
+        shardingRuleConfig.getBroadcastTables().add("t_address");
         shardingRuleConfig.setDefaultDatabaseShardingStrategyConfig(
                 new StandardShardingStrategyConfiguration("user_id", new PreciseModuloShardingDatabaseAlgorithm(), new RangeModuloShardingDatabaseAlgorithm()));
         shardingRuleConfig.setDefaultTableShardingStrategyConfig(

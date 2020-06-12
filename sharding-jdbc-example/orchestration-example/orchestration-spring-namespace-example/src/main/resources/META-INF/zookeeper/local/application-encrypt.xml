@@ -36,7 +36,7 @@
                         http://shardingsphere.apache.org/schema/shardingsphere/orchestration
                         http://shardingsphere.apache.org/schema/shardingsphere/orchestration/orchestration.xsd">
     <import resource="classpath*:META-INF/zookeeper/registry-center.xml" />
-    <context:component-scan base-package="org.apache.shardingsphere.example.common.mybatis" />
+    <context:component-scan base-package="org.apache.shardingsphere.example.core.mybatis" />
 
     <bean id="demo_ds_encrypt" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -50,8 +50,21 @@
     </bean:properties>
     
     <encrypt:data-source id="realEncryptDataSource" data-source-name="demo_ds_encrypt" >
-        <encrypt:encryptor-rule id="pwd_encryptor" type="assistedTest" qualified-columns="t_user.pwd" assisted-query-columns="t_user.assisted_query_pwd" />
-        <encrypt:encryptor-rule id="name_encryptor" type="AES" qualified-columns="t_user.user_name" props-ref="props" />
+        <encrypt:encrypt-rule>
+            <encrypt:tables>
+                <encrypt:table name="t_user">
+                    <encrypt:column logic-column="user_name" cipher-column="user_name" encryptor-ref="name_encryptor" />
+                    <encrypt:column logic-column="pwd" cipher-column="pwd" assisted-query-column="assisted_query_pwd" encryptor-ref="pwd_encryptor"/>
+                </encrypt:table>
+            </encrypt:tables>
+            <encrypt:encryptors>
+                <encrypt:encryptor id="name_encryptor" type="AES" props-ref="props"/>
+                <encrypt:encryptor id="pwd_encryptor" type="assistedTest" />
+            </encrypt:encryptors>
+        </encrypt:encrypt-rule>
+        <encrypt:props>
+            <prop key="query.with.cipher.column">true</prop>
+        </encrypt:props>
     </encrypt:data-source>
     
     <orchestraion:encrypt-data-source id="encryptDataSource" data-source-ref="realEncryptDataSource" registry-center-ref="regCenter" overwrite="true" />
@@ -67,8 +80,7 @@
     </bean>
     
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="org.apache.shardingsphere.example.common.mybatis.repository"/>
+        <property name="basePackage" value="org.apache.shardingsphere.example.core.mybatis.repository"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
-
 </beans>

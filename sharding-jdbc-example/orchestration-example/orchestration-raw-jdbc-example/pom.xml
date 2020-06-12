@@ -6,14 +6,15 @@
     <parent>
         <groupId>org.apache.shardingsphere.example</groupId>
         <artifactId>orchestration-example</artifactId>
-        <version>4.0.0-RC2-SNAPSHOT</version>
+        <version>5.0.0-RC1-SNAPSHOT</version>
     </parent>
     <artifactId>orchestration-raw-jdbc-example</artifactId>
-
+    <name>Example::orchestration::raw-jdbc</name>
+    
     <dependencies>
         <dependency>
             <groupId>org.apache.shardingsphere.example</groupId>
-            <artifactId>repository-jdbc</artifactId>
+            <artifactId>example-raw-jdbc</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -21,7 +22,7 @@
             <artifactId>config-utility</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+        
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-orchestration</artifactId>
@@ -30,9 +31,15 @@
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-orchestration-reg-zookeeper-curator</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>io.shardingsphere</groupId>-->
-            <!--<artifactId>sharding-orchestration-reg-etcd</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-orchestration-reg-nacos</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 </project>

@@ -23,33 +23,20 @@
     <parent>
         <groupId>org.apache.shardingsphere.example</groupId>
         <artifactId>encrypt-example</artifactId>
-        <version>4.0.0-RC2-SNAPSHOT</version>
+        <version>5.0.0-RC1-SNAPSHOT</version>
     </parent>
     <artifactId>encrypt-spring-namespace-example</artifactId>
+    <name>Example::encrypt::spring-namespace</name>
     
     <dependencies>
         <dependency>
             <groupId>org.apache.shardingsphere.example</groupId>
-            <artifactId>repository-mybatis</artifactId>
+            <artifactId>example-spring-mybatis</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-namespace</artifactId>
         </dependency>
-    
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-        </dependency>
     </dependencies>
-    
 </project>

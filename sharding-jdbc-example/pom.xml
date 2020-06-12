@@ -5,15 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.apache.shardingsphere.example</groupId>
-        <artifactId>sharding-sphere-example</artifactId>
-        <version>4.0.0-RC2-SNAPSHOT</version>
+        <artifactId>shardingsphere-example</artifactId>
+        <version>5.0.0-RC1-SNAPSHOT</version>
     </parent>
     <artifactId>sharding-jdbc-example</artifactId>
+    <name>Example::jdbc::root</name>
+    
     <packaging>pom</packaging>
-
+    
     <modules>
-        <module>orchestration-example</module>
         <module>sharding-example</module>
+        <module>orchestration-example</module>
         <module>transaction-example</module>
         <module>other-feature-example</module>
     </modules>
